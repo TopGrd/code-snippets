@@ -1,0 +1,8 @@
+/*
+    text-overflow 必须配合下面两个的使用
+*/
+.text-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
