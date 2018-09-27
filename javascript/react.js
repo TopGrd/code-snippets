@@ -16,7 +16,7 @@ const element = {
   },
 }
 
-function render(element, parentDOM) {
+function instantiate(element, parentDOM) {
   const { type, props } = element
 
   const isTextElemnt = type === '$$Text'
@@ -37,9 +37,14 @@ function render(element, parentDOM) {
     .filters(isAttribte)
     .forEach(name => (dom[name] = props[name]))
 
-  const children = props.children || []
-  children.forEach(child => render(child, dom))
-  parentDOM.appendChild(dom)
+  const childElement = props.children || []
+  const childInstances = childElement.map(instantiate)
+  const childDoms = childInstances.map(instance => instance.dom)
+
+  childDoms.forEach(childDom => dom.appendChild(childDom))
+
+  const instance = { dom, element, childInstances }
+  return instance
 }
 
 function createElement(type, config, ...args) {

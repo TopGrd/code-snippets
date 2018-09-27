@@ -6,9 +6,9 @@
  * @returns
  */
 const safeAccess = (value, access, defaultValue) => {
-  const arr = access.split ? access.split('.') : access;
-  return arr.reduce((prev, cur) => prev && prev[cur], value) || defaultValue;
-};
+  const arr = access.split ? access.split('.') : access
+  return arr.reduce((prev, cur) => prev && prev[cur], value) || defaultValue
+}
 
 // example
 // const exp = {
